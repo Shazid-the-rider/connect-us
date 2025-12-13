@@ -23,9 +23,13 @@ import * as ImagePicker from "expo-image-picker";
 import { updateProfile } from "firebase/auth";
 import { uploadToCloudinary } from "../uploadImageToCloudinary";
 
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Profile"
+>;
+
 export default function ProfileScreen() {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
   const { user } = useContext(AuthContext);
 
   const [photoURL, setPhotoURL] = useState<string | null>(null);
