@@ -40,7 +40,8 @@ export default function LoginScreen() {
       "auth/wrong-password": "Incorrect password",
       "auth/invalid-email": "Invalid email address",
       "auth/too-many-requests": "Too many attempts. Please try again later",
-      "auth/network-request-failed": "Network error. Please check your connection",
+      "auth/network-request-failed":
+        "Network error. Please check your connection",
     };
     return errorMessages[errorCode] || "Login failed. Please try again";
   }
@@ -169,9 +170,7 @@ export default function LoginScreen() {
                 Don't have an account?{" "}
               </Text>
               <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                <Text className="text-black font-bold text-base">
-                  Sign Up
-                </Text>
+                <Text className="text-black font-bold text-base">Sign Up</Text>
               </TouchableOpacity>
             </View>
           </View>
