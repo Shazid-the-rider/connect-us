@@ -50,7 +50,6 @@ export default function App() {
             )}
           </Stack.Navigator>
         </NavigationContainer>
-        a
       </AuthContext.Provider>
     </SafeAreaProvider>
   );
