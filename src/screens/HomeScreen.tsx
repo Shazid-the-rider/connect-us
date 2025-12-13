@@ -8,7 +8,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 
 export default function HomeScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   async function handleLogout() {
     try {
@@ -42,6 +43,16 @@ export default function HomeScreen() {
             >
               <Text className="text-white text-center font-bold text-base">
                 Go to Profile
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="bg-black rounded-xl py-4 mb-4"
+              onPress={() => navigation.navigate("Settings")}
+              activeOpacity={0.8}
+            >
+              <Text className="text-white text-center font-bold text-base">
+                Settings
               </Text>
             </TouchableOpacity>
 
