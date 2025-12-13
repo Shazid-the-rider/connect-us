@@ -126,87 +126,85 @@ export default function ProfileScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View className="flex-1 px-6 py-10">
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Home")}
+            className="mb-6"
+          >
+            <Text className="text-gray-900 font-bold text-base">
+              ← Back to Home
+            </Text>
+          </TouchableOpacity>
+
+          <View className="items-center mb-8">
+            <Text className="text-3xl font-bold text-gray-900">
+              Your Profile
+            </Text>
+          </View>
+
+          <View className="items-center mb-8">
+            {photoURL ? (
+              <Image
+                source={{ uri: photoURL }}
+                className="w-32 h-32 rounded-full"
+              />
+            ) : (
+              <View className="w-32 h-32 rounded-full bg-gray-50 border border-gray-200 items-center justify-center">
+                <Text className="text-gray-500 text-sm">No Photo</Text>
+              </View>
+            )}
+
             <TouchableOpacity
-              onPress={() => navigation.navigate("Home")}
-              className="mb-6"
+              disabled={loading}
+              onPress={pickImage}
+              className="mt-4 border border-gray-200 bg-gray-50 rounded-xl px-6 py-3"
+              activeOpacity={0.8}
             >
-              <Text className="text-gray-900 font-bold text-base">
-                ← Back to Home
-              </Text>
+              {loading ? (
+                <ActivityIndicator color="#111827" />
+              ) : (
+                <Text className="text-gray-900 font-bold text-base">
+                  Change Photo
+                </Text>
+              )}
+            </TouchableOpacity>
+          </View>
+
+          <View className="mb-6">
+            <View className="mb-4">
+              <Text className="text-gray-700 font-semibold mb-2">Bio</Text>
+              <TextInput
+                value={bio}
+                onChangeText={setBio}
+                placeholder="Tell others about yourself"
+                placeholderTextColor="#9ca3af"
+                multiline
+                numberOfLines={4}
+                className="border border-gray-200 rounded-xl px-4 py-3.5 bg-gray-50 text-gray-900 text-base"
+                style={{ textAlignVertical: "top", minHeight: 100 }}
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={saveBio}
+              disabled={loading}
+              className="bg-black rounded-xl py-4 mb-4"
+              activeOpacity={0.8}
+            >
+              {loading ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <Text className="text-white text-center font-bold text-base">
+                  Save Bio
+                </Text>
+              )}
             </TouchableOpacity>
 
-            <View className="items-center mb-8">
-              <Text className="text-3xl font-bold text-gray-900">
-                Your Profile
-              </Text>
-            </View>
-
-            <View className="items-center mb-8">
-              {photoURL ? (
-                <Image
-                  source={{ uri: photoURL }}
-                  className="w-32 h-32 rounded-full"
-                />
-              ) : (
-                <View className="w-32 h-32 rounded-full bg-gray-50 border border-gray-200 items-center justify-center">
-                  <Text className="text-gray-500 text-sm">No Photo</Text>
-                </View>
-              )}
-
-              <TouchableOpacity
-                disabled={loading}
-                onPress={pickImage}
-                className="mt-4 border border-gray-200 bg-gray-50 rounded-xl px-6 py-3"
-                activeOpacity={0.8}
-              >
-                {loading ? (
-                  <ActivityIndicator color="#111827" />
-                ) : (
-                  <Text className="text-gray-900 font-bold text-base">
-                    Change Photo
-                  </Text>
-                )}
-              </TouchableOpacity>
-            </View>
-
-            <View className="mb-6">
-              <View className="mb-4">
-                <Text className="text-gray-700 font-semibold mb-2">Bio</Text>
-                <TextInput
-                  value={bio}
-                  onChangeText={setBio}
-                  placeholder="Tell others about yourself"
-                  placeholderTextColor="#9ca3af"
-                  multiline
-                  numberOfLines={4}
-                  className="border border-gray-200 rounded-xl px-4 py-3.5 bg-gray-50 text-gray-900 text-base"
-                  style={{ textAlignVertical: "top", minHeight: 100 }}
-                />
-              </View>
-
-              <TouchableOpacity
-                onPress={saveBio}
-                disabled={loading}
-                className="bg-black rounded-xl py-4 mb-4"
-                activeOpacity={0.8}
-              >
-                {loading ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text className="text-white text-center font-bold text-base">
-                    Save Bio
-                  </Text>
-                )}
-              </TouchableOpacity>
-
-              <View className="border border-gray-200 rounded-xl px-4 py-3.5 bg-gray-50">
-                <Text className="text-sm text-gray-500">Account Email</Text>
-                <Text className="font-semibold text-gray-900">
-                  {user?.email}
-                </Text>
-              </View>
+            <View className="border border-gray-200 rounded-xl px-4 py-3.5 bg-gray-50">
+              <Text className="text-sm text-gray-500">Account Email</Text>
+              <Text className="font-semibold text-gray-900">{user?.email}</Text>
             </View>
           </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
